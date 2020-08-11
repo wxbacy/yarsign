@@ -46,8 +46,7 @@ class Client
     private static function getUrlByServiceAndClass($service, $class)
     {
         $conf = Conf::get();
-        
-        if (! isset( $conf[$service]['service_address'])) {
+        if (! isset($conf[$service]['service_address'])) {
             throw new Exception('找不到' . $service . '服务的service_address配置');
         }
 

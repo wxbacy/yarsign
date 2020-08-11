@@ -49,7 +49,7 @@ class Sign
         }
 
         $conf = Conf::get();
-        if (! empty($conf[$params['service']]['secret'])) {
+        if (empty($conf[$service]['secret'])) {
             throw new Exception('找不到' . $service . '服务的secret配置');
         }
 
