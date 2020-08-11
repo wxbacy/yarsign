@@ -1,0 +1,27 @@
+{
+    "name" : "pikapiyyy/yarauth",
+    "minimum-stability": "stable",
+    "description": "The auth library for yar",
+    "keywords": [
+        "yar",
+        "rpc",
+        "auth",
+        "php"
+    ],
+    "type": "library",
+    "license": "MIT",
+    "require": {
+        "php": ">=5.4",
+        "ext-yar": "*"
+    },
+    "authors" : [{
+            "name" : "chenwei",
+            "email" : "269646431@qq.com"
+        }
+    ],
+    "autoload" : {
+        "psr-4" : {
+            "Yarauth\\" : "/src"
+        }
+    }
+}

@@ -1,27 +1,11 @@
-> The auth library for yar, make your service more safe which used yar
+<?php
 
-## Requirement
+require_once __DIR__ . '/../autoload.php';
 
-PHP 5.4+ and YAR extension installed
-
-## Get Started
-
-### Install via composer
-
-Add Yarauth to composer.json configuration file.
-```
-$ composer require wxbacy/yarauth
-```
-
-```php
-// If you installed via composer, just use this code to requrie autoloader on the top of your projects.
-require 'vendor/autoload.php';
-
-// Using Yarauth namespace
 use Yarauth\Conf;
 use Yarauth\Client;
 
-// Initialize
+// 此处可写在项目初始化文件
 Conf::load([
     'user' => [
         'service_address' => 'http://userservice.com/rpc/index',
@@ -33,44 +17,30 @@ Conf::load([
     ],
 ]);
 
-// Server
-
-// 以下写在控制器
-$serviceStr = $_GET['service'];
-$ts = $_GET['ts'];
-$sign = $_GET['sign'];
-
-// 解密
-$service = Auth::serviceDecode($serviceStr);
-
-// 身份认证
-if (! Auth::checkSign($service['service'], $service['class'], $ts, $sign)) {
-    return;
-}
-
-$server = new Yar_Server(new $service['class']());
-$server->handle();
-
-// Client
+// 以下为串行调用service示例，user为服务名称，UserModel为服务里需要实例化的类，如果有对应namespace需要带上，如：Client::getInstance('user', "\\business\\User");
 $userModel = Client::getInstance('user', 'UserModel');
 $userModel->getUserByUserid(156562);
 
+// 以下为并行调用service示例
 $userDetail = [];
 Client::concurrentCall('user', 'UserModel', 'getUserByUserid', [156562], function($retval, $callinfo) use (&$userDetail){
     if ($callinfo == NULL) {
+        // TODO::此处可以写一些此处远程调用的前置逻辑，yar会在请求发出后立即调用此回调（收到响应前），且$callinfo参数为null
         return true;
     }
+    // 此处为远程调用收到响应时的回调处理逻辑
     $userDetail['username'] = $retval['username'];
     $userDetail['gender'] = $retval['gender'];
 });
     
 Client::concurrentCall('user', 'UserModel', 'getUserAccount', [156562], function($retval, $callinfo) use (&$userDetail){
     if ($callinfo == NULL) {
+        // TODO::此处可以写一些此处远程调用的前置逻辑，yar会在请求发出后立即调用此回调（收到响应前），且$callinfo参数为null
         return true;
     }
+    // 此处为远程调用收到响应时的回调处理逻辑
     $userDetail['balance_lyb'] = $retval['balance_lyb'];
     $userDetail['balance_mb'] = $retval['balance_mb'];
 });
     
 Yar_Concurrent_Client::loop();
-```
