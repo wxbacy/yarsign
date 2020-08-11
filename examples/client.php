@@ -2,8 +2,8 @@
 
 require_once __DIR__ . '/../autoload.php';
 
-use Yarauth\Conf;
-use Yarauth\Client;
+use Yarsign\Conf;
+use Yarsign\Client;
 
 // 此处可写在项目初始化文件
 Conf::load([

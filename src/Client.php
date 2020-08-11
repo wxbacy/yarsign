@@ -1,6 +1,6 @@
 <?php
 
-namespace Yarauth;
+namespace Yarsign;
 
 use Yar_Client;
 use Exception;
@@ -52,6 +52,6 @@ class Client
         }
 
         
-        return $conf[$service]['service_address']. '?service=' . Auth::serviceEncode($service, $class) . '&ts=' . time() . '&sign=' . Auth::sign($service, $class, time());
+        return $conf[$service]['service_address']. '?service=' . Sign::serviceEncode($service, $class) . '&ts=' . time() . '&sign=' . Sign::sign($service, $class, time());
     }
 }

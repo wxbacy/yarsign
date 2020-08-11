@@ -1,6 +1,6 @@
 <?php
 
-namespace Yarauth;
+namespace Yarsign;
 
 use Exception;
 
@@ -32,7 +32,7 @@ class Conf
     public static function get()
     {
         if (! self::$conf) {
-            throw new Exception('请先调用\Yarauth\ServiceConf::load($conf)');
+            throw new Exception('请先调用\Yarsign\ServiceConf::load($conf)');
         }
         
         return self::$conf;

@@ -1,13 +1,13 @@
 <?php
 
-namespace Yarauth;
+namespace Yarsign;
 
 use Exception;
 
 /**
- * rpc调用身份认证
+ * rpc调用签名验证
  */
-class Auth
+class Sign
 {
     // 有效时间 ：秒
     const ACTIVE_TIME = 180;

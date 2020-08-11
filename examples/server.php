@@ -2,8 +2,8 @@
 
 require_once __DIR__ . '/../autoload.php';
 
-use Yarauth\Conf;
-use Yarauth\Auth;
+use Yarsign\Conf;
+use Yarsign\Sign;
 
 // 此处可写在项目初始化文件
 Conf::load([
@@ -23,10 +23,10 @@ $ts = $_GET['ts'];
 $sign = $_GET['sign'];
 
 // 解密
-$service = Auth::serviceDecode($serviceStr);
+$service = Sign::serviceDecode($serviceStr);
 
 // 身份认证
-if (! Auth::checkSign($service['service'], $service['class'], $ts, $sign)) {
+if (! Sign::checkSign($service['service'], $service['class'], $ts, $sign)) {
     return;
 }
 

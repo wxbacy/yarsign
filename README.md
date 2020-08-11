@@ -1,4 +1,4 @@
-> The auth library for yar, make your service more safe which used yar
+> The sign library for yar, make your service more safe which used yar
 
 ## Requirement
 
@@ -8,18 +8,18 @@ PHP 5.4+ and YAR extension installed
 
 ### Install via composer
 
-Add Yarauth to composer.json configuration file.
+Add Yarsign to composer.json configuration file.
 ```
-$ composer require wxbacy/yarauth
+$ composer require wxbacy/yarsign
 ```
 
 ```php
 // If you installed via composer, just use this code to requrie autoloader on the top of your projects.
 require 'vendor/autoload.php';
 
-// Using Yarauth namespace
-use Yarauth\Conf;
-use Yarauth\Client;
+// Using Yarsign namespace
+use Yarsign\Conf;
+use Yarsign\Client;
 
 // Initialize
 Conf::load([
@@ -41,10 +41,10 @@ $ts = $_GET['ts'];
 $sign = $_GET['sign'];
 
 // 解密
-$service = Auth::serviceDecode($serviceStr);
+$service = Sign::serviceDecode($serviceStr);
 
 // 身份认证
-if (! Auth::checkSign($service['service'], $service['class'], $ts, $sign)) {
+if (! Sign::checkSign($service['service'], $service['class'], $ts, $sign)) {
     return;
 }
 
