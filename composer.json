@@ -1,11 +1,11 @@
 {
-    "name" : "pikapiyyy/yarauth",
+    "name" : "wxbacy/yarsign",
     "minimum-stability": "stable",
-    "description": "The auth library for yar",
+    "description": "The sign library for yar",
     "keywords": [
         "yar",
         "rpc",
-        "auth",
+        "sign",
         "php"
     ],
     "type": "library",
@@ -21,7 +21,7 @@
     ],
     "autoload" : {
         "psr-4" : {
-            "Yarauth\\" : "/src"
+            "Yarsign\\" : "/src"
         }
     }
 }
