@@ -1,6 +1,5 @@
 {
     "name" : "wxbacy/yarsign",
-    "minimum-stability": "stable",
     "description": "The sign library for yar",
     "keywords": [
         "yar",
