@@ -10,7 +10,7 @@ PHP 5.4+ and YAR extension installed
 
 Add Yarsign to composer.json configuration file.
 ```
-$ composer require wxbacy/yarsign 1.0.1
+$ composer require wxbacy/yarsign
 ```
 
 ```php
